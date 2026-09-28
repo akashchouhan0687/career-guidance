@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Resources | CareerGuide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { padding: 4rem 0; text-align: center; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+        .resource-card { display: flex; flex-direction: column; }
+        .resource-header { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .resource-section { margin-bottom: 1.5rem; }
+        .resource-section:last-child { margin-bottom: 0; }
+        .resource-title { font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.5rem; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
+        .resource-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CareerGuide</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="careers.html">Careers</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmaps.html">Roadmaps</a>
+                <a href="resources.html" class="active">Resources</a>
+            </div>
+            <a href="assessment.html" class="btn btn-primary nav-cta">Take Assessment</a>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Learning Resources</h1>
+            <p style="max-width: 600px; margin: 1rem auto 0; font-size: 1.125rem;">Curated topics, technologies, and ideas to kickstart your learning journey.</p>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 4rem 1.5rem;">
+        <div class="grid grid-3">
+            
+            <!-- Programming -->
+            <div class="card resource-card">
+                <div class="resource-header">
+                    <h3>Programming</h3>
+                    <p style="margin-bottom: 0;">Foundational software engineering.</p>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">What to Learn</div>
+                    <ul class="resource-list">
+                        <li>Core Syntax & Logic</li>
+                        <li>Object-Oriented Programming</li>
+                        <li>Data Structures (Arrays, Trees)</li>
+                        <li>Version Control (Git)</li>
+                    </ul>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">Suggested Technologies</div>
+                    <ul class="resource-list">
+                        <li>Python, Java, or C++</li>
+                        <li>GitHub / GitLab</li>
+                        <li>VS Code Editor</li>
+                    </ul>
+                </div>
+                <div class="resource-section" style="margin-top: auto;">
+                    <div class="resource-title">Project Ideas</div>
+                    <ul class="resource-list">
+                        <li>Command-line calculator</li>
+                        <li>Personal task manager app</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Web Development -->
+            <div class="card resource-card">
+                <div class="resource-header">
+                    <h3>Web Development</h3>
+                    <p style="margin-bottom: 0;">Building for the internet.</p>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">What to Learn</div>
+                    <ul class="resource-list">
+                        <li>Semantic HTML & Responsive CSS</li>
+                        <li>JavaScript DOM Manipulation</li>
+                        <li>API Fetching & Asynchronous JS</li>
+                        <li>Basic Backend Routing</li>
+                    </ul>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">Suggested Technologies</div>
+                    <ul class="resource-list">
+                        <li>HTML5, CSS3, Vanilla JS</li>
+                        <li>React or Vue.js</li>
+                        <li>Node.js / Express</li>
+                    </ul>
+                </div>
+                <div class="resource-section" style="margin-top: auto;">
+                    <div class="resource-title">Project Ideas</div>
+                    <ul class="resource-list">
+                        <li>Personal portfolio website</li>
+                        <li>Weather dashboard using public API</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cybersecurity -->
+            <div class="card resource-card">
+                <div class="resource-header">
+                    <h3>Cybersecurity</h3>
+                    <p style="margin-bottom: 0;">Protecting digital assets.</p>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">What to Learn</div>
+                    <ul class="resource-list">
+                        <li>Networking Models (OSI/TCP)</li>
+                        <li>Linux Command Line</li>
+                        <li>Common Vulnerabilities (OWASP)</li>
+                        <li>Cryptography Basics</li>
+                    </ul>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">Suggested Technologies</div>
+                    <ul class="resource-list">
+                        <li>Kali Linux or Ubuntu</li>
+                        <li>Wireshark (Packet Analysis)</li>
+                        <li>Nmap (Network Scanning)</li>
+                    </ul>
+                </div>
+                <div class="resource-section" style="margin-top: auto;">
+                    <div class="resource-title">Project Ideas</div>
+                    <ul class="resource-list">
+                        <li>Set up a secure home network</li>
+                        <li>Complete basic CTF challenges</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- AI & Data -->
+            <div class="card resource-card">
+                <div class="resource-header">
+                    <h3>AI & Data</h3>
+                    <p style="margin-bottom: 0;">Analytics and machine learning.</p>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">What to Learn</div>
+                    <ul class="resource-list">
+                        <li>Descriptive Statistics</li>
+                        <li>Data Cleaning & Preprocessing</li>
+                        <li>Database Querying</li>
+                        <li>Supervised & Unsupervised ML</li>
+                    </ul>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">Suggested Technologies</div>
+                    <ul class="resource-list">
+                        <li>Python (Pandas, Scikit-Learn)</li>
+                        <li>SQL (PostgreSQL / MySQL)</li>
+                        <li>Jupyter Notebooks</li>
+                    </ul>
+                </div>
+                <div class="resource-section" style="margin-top: auto;">
+                    <div class="resource-title">Project Ideas</div>
+                    <ul class="resource-list">
+                        <li>Analyze a public Kaggle dataset</li>
+                        <li>Build a movie recommendation system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UI/UX Design -->
+            <div class="card resource-card">
+                <div class="resource-header">
+                    <h3>UI/UX Design</h3>
+                    <p style="margin-bottom: 0;">Crafting digital experiences.</p>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">What to Learn</div>
+                    <ul class="resource-list">
+                        <li>Design Thinking Process</li>
+                        <li>Wireframing & Prototyping</li>
+                        <li>Color Theory & Typography</li>
+                        <li>Usability Testing</li>
+                    </ul>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">Suggested Technologies</div>
+                    <ul class="resource-list">
+                        <li>Figma (Industry Standard)</li>
+                        <li>Notion (For Research)</li>
+                        <li>Basic HTML/CSS</li>
+                    </ul>
+                </div>
+                <div class="resource-section" style="margin-top: auto;">
+                    <div class="resource-title">Project Ideas</div>
+                    <ul class="resource-list">
+                        <li>Redesign a local business website</li>
+                        <li>Create a mobile app prototype</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div class="card resource-card">
+                <div class="resource-header">
+                    <h3>Professional Skills</h3>
+                    <p style="margin-bottom: 0;">Essential workplace abilities.</p>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">What to Learn</div>
+                    <ul class="resource-list">
+                        <li>Effective Communication</li>
+                        <li>Time Management</li>
+                        <li>Agile/Scrum Methodologies</li>
+                        <li>Resume Writing & Interviewing</li>
+                    </ul>
+                </div>
+                <div class="resource-section">
+                    <div class="resource-title">Suggested Tools</div>
+                    <ul class="resource-list">
+                        <li>Trello / Jira for Project Mgmt</li>
+                        <li>LinkedIn for Networking</li>
+                        <li>Google Workspace</li>
+                    </ul>
+                </div>
+                <div class="resource-section" style="margin-top: auto;">
+                    <div class="resource-title">Action Items</div>
+                    <ul class="resource-list">
+                        <li>Create a polished LinkedIn profile</li>
+                        <li>Do a mock interview with a peer</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="index.html" class="footer-logo">CareerGuide</a>
+            <p>Helping students explore career possibilities.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="careers.html">Careers</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmaps.html">Roadmaps</a>
+                <a href="resources.html">Resources</a>
+            </div>
+            <p class="footer-copy">© 2026 CareerGuide. Designed for educational purposes.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

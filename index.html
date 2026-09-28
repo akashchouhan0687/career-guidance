@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerGuide | Find Your Path</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CareerGuide</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="careers.html">Careers</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmaps.html">Roadmaps</a>
+                <a href="resources.html">Resources</a>
+                <a href="assessment.html" class="btn btn-primary nav-cta mobile-only" style="display: none;">Take Assessment</a>
+            </div>
+            <a href="assessment.html" class="btn btn-primary nav-cta desktop-only">Take Assessment</a>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Find a Career Path That Fits You.</h1>
+            <p>Explore careers, understand the skills you need, and discover learning paths that match your interests.</p>
+            <div class="hero-btns">
+                <a href="assessment.html" class="btn btn-primary">Take Career Assessment</a>
+                <a href="careers.html" class="btn btn-secondary">Explore Careers</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Career Categories -->
+        <section class="container">
+            <div class="section-header">
+                <h2>Explore Career Fields</h2>
+                <p>Browse our curated selection of high-growth industries and find where you belong.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    </div>
+                    <h3 class="card-title">Technology</h3>
+                    <p>Software development, web engineering, and system architecture.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3 class="card-title">Cybersecurity</h3>
+                    <p>Protecting networks, analyzing threats, and securing data.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3 class="card-title">AI & Data</h3>
+                    <p>Machine learning, data analytics, and artificial intelligence.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+                    </div>
+                    <h3 class="card-title">Design</h3>
+                    <p>UI/UX design, product design, and creative direction.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3 class="card-title">Business</h3>
+                    <p>Business analytics, digital marketing, and management.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    </div>
+                    <h3 class="card-title">Engineering</h3>
+                    <p>Hardware, mechanical systems, and robotics.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Careers -->
+        <section class="container">
+            <div class="section-header">
+                <h2>Popular Career Paths</h2>
+                <p>Explore some of the most sought-after roles in the modern workforce.</p>
+            </div>
+            <div class="grid grid-3" id="featured-careers">
+                <!-- Dynamically populated or statically written for index -->
+                <div class="card">
+                    <span class="tag">Technology</span>
+                    <h3 class="card-title">Software Developer</h3>
+                    <p>Design, build, and maintain software applications and systems.</p>
+                    <a href="careers.html?id=software-developer" class="card-link">Explore Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="card">
+                    <span class="tag">Cybersecurity</span>
+                    <h3 class="card-title">Cybersecurity Analyst</h3>
+                    <p>Protect computer networks and systems from security breaches.</p>
+                    <a href="careers.html?id=cybersecurity-analyst" class="card-link">Explore Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="card">
+                    <span class="tag">AI & Data</span>
+                    <h3 class="card-title">Data Analyst</h3>
+                    <p>Interpret data and turn it into information for decision making.</p>
+                    <a href="careers.html?id=data-analyst" class="card-link">Explore Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="card">
+                    <span class="tag">AI & Data</span>
+                    <h3 class="card-title">AI / ML Engineer</h3>
+                    <p>Design and build artificial intelligence models and systems.</p>
+                    <a href="careers.html?id=ai-ml-engineer" class="card-link">Explore Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="card">
+                    <span class="tag">Design</span>
+                    <h3 class="card-title">UI/UX Designer</h3>
+                    <p>Design user interfaces and enhance user satisfaction.</p>
+                    <a href="careers.html?id=ui-ux-designer" class="card-link">Explore Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="card">
+                    <span class="tag">Business</span>
+                    <h3 class="card-title">Business Analyst</h3>
+                    <p>Bridge the gap between IT and business using data analytics.</p>
+                    <a href="careers.html?id=business-analyst" class="card-link">Explore Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Finding your path is simple with our three-step process.</p>
+            </div>
+            <div class="grid grid-3 steps-container">
+                <div class="step">
+                    <span class="step-num">01</span>
+                    <h3>Assess</h3>
+                    <p>Answer a few questions about your interests, preferred activities, and skills to help us understand you better.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">02</span>
+                    <h3>Discover</h3>
+                    <p>Get personalized career field recommendations that match your responses and explore different roles.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">03</span>
+                    <h3>Plan</h3>
+                    <p>Explore step-by-step learning roadmaps, required skills, and curated resources to kickstart your journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container">
+            <div class="cta-section">
+                <h2>Not sure where to start?</h2>
+                <p>Take our short career assessment and explore paths that match your interests.</p>
+                <a href="assessment.html" class="btn" style="background: white; color: var(--primary);">Start Assessment</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="index.html" class="footer-logo">CareerGuide</a>
+            <p>Helping students explore career possibilities.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="careers.html">Careers</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmaps.html">Roadmaps</a>
+                <a href="resources.html">Resources</a>
+            </div>
+            <p class="footer-copy">© 2026 CareerGuide. Designed for educational purposes.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
