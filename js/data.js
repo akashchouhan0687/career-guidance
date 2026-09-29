@@ -189,6 +189,86 @@ const careersData = [
             "Digital Marketer"
         ],
         related: ["business-analyst", "ui-ux-designer"]
+    },
+    {
+        id: "mechanical-engineer",
+        name: "Mechanical Engineer",
+        category: "Engineering",
+        shortDesc: "Designs, develops, tests and improves mechanical systems, machines and equipment.",
+        description: "Designs, develops, tests and improves mechanical systems, machines and equipment.",
+        skills: ["CAD", "Mechanical Design", "Engineering Mathematics", "Problem Solving", "Thermodynamics", "Manufacturing Basics"],
+        technologies: ["AutoCAD", "SolidWorks", "MATLAB", "ANSYS"],
+        education: "Mechanical Engineering or a related engineering degree.",
+        roadmap: [
+            "Learn engineering mathematics and physics.",
+            "Learn engineering drawing and CAD.",
+            "Understand mechanics and thermodynamics.",
+            "Learn mechanical design concepts.",
+            "Practice using CAD software.",
+            "Complete projects and internships.",
+            "Build a portfolio and apply for engineering roles."
+        ],
+        related: ["civil-engineer", "electrical-engineer"]
+    },
+    {
+        id: "civil-engineer",
+        name: "Civil Engineer",
+        category: "Engineering",
+        shortDesc: "Plans, designs and manages construction and infrastructure projects.",
+        description: "Plans, designs and manages construction and infrastructure projects such as buildings, roads and bridges.",
+        skills: ["AutoCAD", "Structural Basics", "Construction Management", "Surveying", "Engineering Mathematics", "Problem Solving"],
+        technologies: ["AutoCAD", "Civil 3D", "Revit", "SAP2000"],
+        education: "Civil Engineering or a related engineering degree.",
+        roadmap: [
+            "Learn engineering mathematics and physics.",
+            "Learn engineering drawing and CAD.",
+            "Study surveying and construction materials.",
+            "Learn structural and environmental engineering basics.",
+            "Practice AutoCAD and related tools.",
+            "Complete projects and internships.",
+            "Build a portfolio and apply for civil engineering roles."
+        ],
+        related: ["mechanical-engineer"]
+    },
+    {
+        id: "electrical-engineer",
+        name: "Electrical Engineer",
+        category: "Engineering",
+        shortDesc: "Designs, develops and maintains electrical systems and equipment.",
+        description: "Designs, develops and maintains electrical systems, circuits, power systems and electrical equipment.",
+        skills: ["Circuit Analysis", "Electrical Machines", "Power Systems", "Electronics Basics", "MATLAB/Simulation Basics", "Problem Solving"],
+        technologies: ["MATLAB", "Simulink", "AutoCAD Electrical", "ETAP"],
+        education: "Electrical Engineering or a related engineering degree.",
+        roadmap: [
+            "Learn mathematics and basic electrical concepts.",
+            "Study circuit theory and electrical machines.",
+            "Learn power systems and control basics.",
+            "Practice circuit simulation.",
+            "Work on electrical projects.",
+            "Complete internships.",
+            "Build a technical portfolio and apply for engineering roles."
+        ],
+        related: ["electronics-engineer", "mechanical-engineer"]
+    },
+    {
+        id: "electronics-engineer",
+        name: "Electronics Engineer",
+        category: "Engineering",
+        shortDesc: "Designs and develops electronic circuits and embedded systems.",
+        description: "Designs and develops electronic circuits, embedded systems and electronic devices.",
+        skills: ["Digital Electronics", "Analog Electronics", "Microcontrollers", "Embedded Systems", "Circuit Design", "Programming Basics"],
+        technologies: ["C/C++", "Altium Designer", "Eagle", "Arduino", "Proteus"],
+        education: "Electronics Engineering, Electronics and Telecommunication Engineering, or a related degree.",
+        roadmap: [
+            "Learn basic electronics and circuit theory.",
+            "Study analog and digital electronics.",
+            "Learn microcontrollers.",
+            "Learn C/C++ programming basics.",
+            "Build embedded and electronics projects.",
+            "Complete internships.",
+            "Create a project portfolio and apply for electronics or embedded roles."
+        ],
+        related: ["electrical-engineer", "ai-ml-engineer"]
     }
 ];
 

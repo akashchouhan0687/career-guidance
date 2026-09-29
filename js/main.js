@@ -49,11 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
             .roadmap-item,
             .cta-section,
             .details-content,
-            .assessment-container
+            .assessment-container,
+            .match-card
         `);
 
         elementsToAnimate.forEach((el, index) => {
-            if (!el.classList.contains('animate-on-scroll') && !el.classList.contains('is-visible')) {
+            if (!el.classList.contains('is-visible')) {
                 el.classList.add('animate-on-scroll');
                 
                 // Add a very subtle delay for grids to stagger entry
