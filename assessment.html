@@ -57,8 +57,26 @@
     </nav>
 
     <div class="container">
+        <!-- Stage Selection View -->
+        <div id="stage-view" class="assessment-container" style="text-align: center;">
+            <h1 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);">Welcome to Career Assessment</h1>
+            <p style="font-size: 1.125rem; color: var(--text-muted); margin-bottom: 2.5rem;">Where are you in your education journey?</p>
+            
+            <div class="options-grid" style="text-align: left; max-width: 500px; margin: 0 auto;">
+                <div class="option-label stage-card" data-stage="school">
+                    <span style="font-size: 1.125rem; font-weight: 500;">School</span>
+                </div>
+                <div class="option-label stage-card" data-stage="higher_secondary">
+                    <span style="font-size: 1.125rem; font-weight: 500;">Higher Secondary</span>
+                </div>
+                <div class="option-label stage-card" data-stage="college">
+                    <span style="font-size: 1.125rem; font-weight: 500;">College</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Assessment Quiz View -->
-        <div id="assessment-view" class="assessment-container">
+        <div id="assessment-view" class="assessment-container" style="display: none;">
             <div class="progress-container">
                 <div class="progress-text" id="progress-text">Question 1 of 8</div>
                 <div class="progress-bar-bg">
@@ -82,9 +100,24 @@
         <!-- Results View -->
         <div id="results-view" class="assessment-container" style="display: none; box-shadow: none; border: none; background: transparent; padding: 0;">
             <div class="results-header">
-                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Your Career Matches</h1>
-                <p style="font-size: 1.125rem;">Based on your responses, here are some career paths you may want to explore.</p>
+                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Your Career Path Suggestions</h1>
+                <p style="font-size: 1.125rem;">Based on your responses, these career paths may be worth exploring.</p>
             </div>
+            
+            <div id="profile-summary" style="display: none; background: var(--bg-light); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border);">
+                <!-- Profile injected by JS -->
+            </div>
+            
+            <style>
+                .profile-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+                .profile-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+                .profile-label { font-weight: 500; color: var(--text-muted); font-size: 0.875rem; }
+                .profile-value { font-weight: 600; color: var(--primary); text-align: right; max-width: 60%; font-size: 0.95rem; }
+                @media (max-width: 600px) {
+                    .profile-row { flex-direction: column; gap: 0.25rem; }
+                    .profile-value { text-align: left; max-width: 100%; }
+                }
+            </style>
             
             <div id="matches-container">
                 <!-- Matches injected by JS -->
