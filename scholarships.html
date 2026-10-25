@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships | CareerGuide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Scholarships Page Specific Styles */
+        .page-header { 
+            padding: 2.5rem 0 1.75rem; 
+            text-align: center; 
+            background: var(--bg-white); 
+            border-bottom: 1px solid var(--border); 
+        }
+        .page-header h1 { font-size: 2rem; margin-bottom: 0.35rem; }
+        .page-header .subtitle { font-size: 1.1rem; color: var(--text-main); font-weight: 500; margin-bottom: 0.5rem; }
+        .page-header .intro-text { max-width: 680px; margin: 0 auto; font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Filter Controls */
+        .filter-panel {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .search-container {
+            position: relative;
+            margin-bottom: 1.25rem;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            background: var(--bg-white);
+            color: var(--text-main);
+        }
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+        .search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            align-items: flex-end;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .filter-select {
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            cursor: pointer;
+        }
+        .filter-select:focus {
+            border-color: var(--accent);
+        }
+        .filter-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .filter-reset-btn {
+            height: 38px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .results-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .results-count {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Scholarship Cards */
+        .scholarships-container {
+            margin-bottom: 3.5rem;
+        }
+        .scholarship-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: none;
+        }
+        .scholarship-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-sm);
+        }
+        .scholarship-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+        .tag-type { background: #eef2ff; color: var(--accent); border-color: #c7d2fe; font-weight: 600; }
+        .tag-geo { background: #f1f5f9; color: #475569; border-color: var(--border); }
+        .tag-status { background: #fef3c7; color: #92400e; border-color: #fde68a; font-weight: 500; }
+        
+        .scholarship-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            line-height: 1.35;
+            margin-bottom: 0.35rem;
+        }
+        .scholarship-provider {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+        .scholarship-desc {
+            font-size: 0.925rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .scholarship-meta-grid {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.85rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.875rem;
+        }
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+        .meta-item-full {
+            grid-column: 1 / -1;
+        }
+        .meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .meta-value {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .scholarship-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+        .btn-details {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+        }
+        .btn-portal {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Detailed view (Expandable) */
+        .scholarship-details {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px dashed var(--border);
+        }
+        .details-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .details-block h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.25rem;
+        }
+        .details-block ul, .details-block ol {
+            padding-left: 1.25rem;
+            font-size: 0.875rem;
+            color: var(--text-main);
+        }
+        .details-block li {
+            margin-bottom: 0.4rem;
+            line-height: 1.45;
+        }
+        .details-block ul { list-style-type: disc; }
+        .details-block ol { list-style-type: decimal; }
+        .details-footer-notice {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 0.825rem;
+            color: var(--text-muted);
+        }
+        .details-footer-notice a {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Common Documents Section */
+        .checklist-section {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.25rem 1.75rem;
+            margin-bottom: 2.5rem;
+        }
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0 1.25rem;
+        }
+        .checklist-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.85rem 1rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+        .check-icon {
+            color: #16a34a;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .checklist-text h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            color: var(--primary);
+        }
+        .checklist-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+        .checklist-disclaimer {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: var(--radius);
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            color: #1e40af;
+        }
+
+        /* Guidance Section */
+        .guidance-section {
+            margin-bottom: 2.5rem;
+        }
+        .guidance-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .guidance-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            position: relative;
+        }
+        .guidance-num {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 0.65rem;
+        }
+        .guidance-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.35rem;
+            color: var(--primary);
+        }
+        .guidance-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.45;
+        }
+
+        /* Informational Advisory Notice */
+        .advisory-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .advisory-box p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            max-width: 800px;
+            margin-inline: auto;
+        }
+
+        @media (max-width: 768px) {
+            .scholarship-meta-grid { grid-template-columns: 1fr; }
+            .filters-grid { grid-template-columns: 1fr; }
+            .results-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .checklist-section { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">CareerGuide</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="careers.html">Careers</a>
+                <a href="assessment.html">Assessment</a>
+                <a href="roadmaps.html">Roadmaps</a>
+                <a href="resources.html">Resources</a>
+                <a href="scholarships.html" class="active">Scholarships</a>
+                <a href="login.html">Login</a>
+            </div>
+            <a href="assessment.html" class="btn btn-primary nav-cta">Take Assessment</a>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h18"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Introduction -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Scholarships</h1>
+            <p class="subtitle">Discover financial support for your education.</p>
+            <p class="intro-text">
+                Explore government scholarship schemes and financial aid opportunities for school, diploma, and college education. Filter by education level, category, and eligibility to find matching schemes, and verify official deadlines and requirements directly on the respective portals.
+            </p>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 2rem;">
+        <!-- Search & Filter Controls -->
+        <section class="filter-panel" aria-label="Scholarship search and filter options">
+            <div class="search-container">
+                <span class="search-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </span>
+                <input 
+                    type="text" 
+                    id="scholarship-search" 
+                    class="search-input" 
+                    placeholder="Search scholarships by name, provider, keyword (e.g. AICTE, Girls, Degree, MahaDBT)..."
+                    aria-label="Search scholarships by name, provider, or keyword"
+                >
+            </div>
+
+            <div class="filters-grid">
+                <!-- Education Level Filter -->
+                <div class="filter-group">
+                    <label for="filter-education">Education Level</label>
+                    <select id="filter-education" class="filter-select">
+                        <option value="all">All Education Levels</option>
+                        <option value="Higher Secondary (11-12)">Higher Secondary (11-12)</option>
+                        <option value="Diploma">Diploma / Polytechnic</option>
+                        <option value="Undergraduate">Undergraduate (Degree)</option>
+                        <option value="Postgraduate">Postgraduate</option>
+                    </select>
+                </div>
+
+                <!-- Category / Eligibility Group Filter -->
+                <div class="filter-group">
+                    <label for="filter-category">Eligibility Group</label>
+                    <select id="filter-category" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="General / EBC">General / EBC (Low Income)</option>
+                        <option value="Girl Students">Girl Students</option>
+                        <option value="Specially-Abled (PwD)">Specially-Abled (PwD)</option>
+                        <option value="Scheduled Caste (SC)">Scheduled Caste (SC)</option>
+                        <option value="Minority Communities">Minority Communities</option>
+                        <option value="Wards of Defence / Police Personnel">Defence / Police Wards</option>
+                    </select>
+                </div>
+
+                <!-- State / Location Filter -->
+                <div class="filter-group">
+                    <label for="filter-state">State / Region</label>
+                    <select id="filter-state" class="filter-select">
+                        <option value="all">All Locations</option>
+                        <option value="All India">All India Schemes</option>
+                        <option value="Maharashtra">Maharashtra (State Scheme)</option>
+                    </select>
+                </div>
+
+                <!-- Scholarship Type Filter -->
+                <div class="filter-group">
+                    <label for="filter-type">Scholarship Type</label>
+                    <select id="filter-type" class="filter-select">
+                        <option value="all">All Types</option>
+                        <option value="Merit-based">Merit-based</option>
+                        <option value="Need-based">Need-based</option>
+                        <option value="Merit-cum-Means">Merit-cum-Means</option>
+                    </select>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="filter-group filter-actions">
+                    <button id="reset-filters-btn" class="btn btn-secondary filter-reset-btn" type="button">
+                        Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-meta">
+                <span id="results-count" class="results-count">Showing verified scholarships</span>
+                <span>Data verified via official portals (NSP, MahaDBT, AICTE)</span>
+            </div>
+        </section>
+
+        <!-- Scholarship Cards Grid -->
+        <section class="scholarships-container" aria-label="Available Scholarships List">
+            <div id="scholarships-grid" class="grid grid-2">
+                <!-- Dynamically populated from js/scholarships.js -->
+            </div>
+        </section>
+
+        <!-- Common Documents Checklist Section -->
+        <section class="checklist-section" aria-labelledby="checklist-heading">
+            <div class="section-header" style="text-align: left; max-width: none; margin-bottom: 0.5rem;">
+                <h2 id="checklist-heading" style="font-size: 1.4rem;">Common Documents Checklist</h2>
+                <p>Most government and institutional scholarship portals require digital scans of these standard documents. Keep clear, verified copies ready before applying:</p>
+            </div>
+
+            <div class="checklist-grid">
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Academic Marksheets</h4>
+                        <p>Class 10, Class 12, or last passed examination marksheet / transcript.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Identity Proof</h4>
+                        <p>Aadhaar Card, Student ID, or government-issued photo identity proof.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Income Certificate</h4>
+                        <p>Current financial year certificate issued by an authorized revenue officer (Tehsildar / SDO).</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Caste / Category Certificate</h4>
+                        <p>Competent authority certificate for SC, ST, OBC, or Minority declaration, if applicable.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Domicile Certificate</h4>
+                        <p>Proof of permanent state residence, especially for state welfare schemes (e.g., MahaDBT).</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Bank Account Details</h4>
+                        <p>Active bank savings passbook copy in the student's name, seeded with Aadhaar for DBT transfer.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Admission / Bonafide Certificate</h4>
+                        <p>College admission allotment letter, fee payment receipt, or bonafide student letter.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="checklist-text">
+                        <h4>Disability Certificate (If Applicable)</h4>
+                        <p>Valid certificate issued by an authorized government medical board with ≥40% disability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist-disclaimer">
+                <strong>Important Notice:</strong> Document requirements vary across Central, State, and Institutional schemes. Students must always read the latest official scheme guidelines before submitting applications on the portal.
+            </div>
+        </section>
+
+        <!-- Helpful Guidance Section -->
+        <section class="guidance-section" aria-labelledby="guidance-heading">
+            <div class="section-header" style="text-align: left; max-width: none; margin-bottom: 0.5rem;">
+                <h2 id="guidance-heading" style="font-size: 1.4rem;">Helpful Application Guidance</h2>
+                <p>Follow these structured steps to ensure your scholarship application is processed smoothly:</p>
+            </div>
+
+            <div class="guidance-steps">
+                <div class="guidance-card">
+                    <span class="guidance-num">1</span>
+                    <h4>Check Eligibility Carefully</h4>
+                    <p>Review the minimum qualifying percentage, income limits, eligible course branches, and category criteria before initiating your application.</p>
+                </div>
+
+                <div class="guidance-card">
+                    <span class="guidance-num">2</span>
+                    <h4>Verify the Current Deadline</h4>
+                    <p>Official timelines and portal windows for fresh and renewal applications are updated every academic year. Always verify active closing dates.</p>
+                </div>
+
+                <div class="guidance-card">
+                    <span class="guidance-num">3</span>
+                    <h4>Prepare Required Documents</h4>
+                    <p>Scan your original certificates clearly within the permissible file format and file size limits specified by the portal.</p>
+                </div>
+
+                <div class="guidance-card">
+                    <span class="guidance-num">4</span>
+                    <h4>Apply Through the Official Portal</h4>
+                    <p>Register via One-Time Registration (OTR) on the National Scholarship Portal (scholarships.gov.in) or your state portal (e.g. MahaDBT).</p>
+                </div>
+
+                <div class="guidance-card">
+                    <span class="guidance-num">5</span>
+                    <h4>Keep Application Reference</h4>
+                    <p>Save and print the final submitted application form, acknowledgement receipt, and Application ID for future reference and institute scrutiny.</p>
+                </div>
+
+                <div class="guidance-card">
+                    <span class="guidance-num">6</span>
+                    <h4>Track Application on Portal</h4>
+                    <p>Log in regularly to check institute verification, nodal officer remarks, or defect rectification notices to prevent disqualification.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="index.html" class="footer-logo">CareerGuide</a>
+            <p>Helping students explore career possibilities.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/scholarships.js"></script>
+</body>
+</html>

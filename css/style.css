@@ -27,6 +27,10 @@ body {
 }
 
 a { text-decoration: none; color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 ul { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 
@@ -140,6 +144,12 @@ footer { background: var(--bg-white); border-top: 1px solid var(--border); paddi
 .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
 
 /* Responsive Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.85rem; }
+    .nav-cta { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none; flex-direction: column; position: absolute;

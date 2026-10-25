@@ -38,6 +38,10 @@ body {
     background: #ffffff;
 }
 .form-control:focus { border-color: #4f46e5; }
+.form-control:focus-visible, .auth-btn:focus-visible, .password-toggle:focus-visible, .auth-link:focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+}
 .password-toggle {
     position: absolute; right: 0.75rem; top: 1.95rem; background: none; border: none;
     font-size: 0.8rem; color: #64748b; cursor: pointer; font-weight: 500;
