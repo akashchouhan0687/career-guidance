@@ -7,15 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .page-header { padding: 4rem 0; text-align: center; background: var(--bg-white); border-bottom: 1px solid var(--border); }
-        .resource-card { display: flex; flex-direction: column; }
-        .resource-header { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
-        .resource-section { margin-bottom: 1.5rem; }
+        .page-header { padding: 2.5rem 0 2rem; text-align: center; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+        .page-header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+        .page-header p { font-size: 1rem; margin-bottom: 0; }
+        .resource-card { display: flex; flex-direction: column; padding: 1.35rem; }
+        .resource-header { margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
+        .resource-header h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+        .resource-header p { font-size: 0.85rem; }
+        .resource-section { margin-bottom: 1.25rem; }
         .resource-section:last-child { margin-bottom: 0; }
-        .resource-title { font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.5rem; }
+        .resource-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.4rem; }
         .resource-list { list-style: none; padding: 0; }
-        .resource-list li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
-        .resource-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+        .resource-list li { margin-bottom: 0.35rem; padding-left: 1.25rem; position: relative; font-size: 0.9rem; }
+        .resource-list li::before { content: '•'; position: absolute; left: 0.25rem; color: var(--accent); font-weight: bold; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -43,7 +47,7 @@
         </div>
     </header>
 
-    <main class="container" style="padding: 4rem 1.5rem;">
+    <main class="container" style="padding: 2.5rem 1.25rem;">
         <div class="grid grid-3">
             
             <!-- Programming -->

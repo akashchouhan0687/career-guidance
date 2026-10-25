@@ -7,20 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .page-header { padding: 4rem 0; text-align: center; background: var(--bg-white); border-bottom: 1px solid var(--border); }
-        .roadmap-card { padding: 2.5rem; }
+        .page-header { padding: 2.5rem 0 2rem; text-align: center; background: var(--bg-white); border-bottom: 1px solid var(--border); }
+        .page-header h1 { font-size: 2rem; margin-bottom: 0.4rem; }
+        .page-header p { font-size: 1rem; margin-bottom: 0; }
+        .roadmap-card { padding: 1.75rem; }
+        .roadmap-card h3 { font-size: 1.25rem; margin-bottom: 0.35rem; }
         .roadmap-timeline { list-style: none; padding: 0; margin-top: 1.5rem; position: relative; }
-        .roadmap-timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 1.5rem; width: 2px; background: var(--bg-light); z-index: 1; }
-        .roadmap-item { position: relative; padding-left: 4rem; margin-bottom: 2rem; z-index: 2; }
+        .roadmap-timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 1.25rem; width: 2px; background: var(--border); z-index: 1; }
+        .roadmap-item { position: relative; padding-left: 3.5rem; margin-bottom: 1.5rem; z-index: 2; }
         .roadmap-item:last-child { margin-bottom: 0; }
         .roadmap-num { 
-            position: absolute; left: 0; top: 0; width: 3rem; height: 3rem; 
-            background: var(--bg-white); border: 2px solid var(--accent); color: var(--accent); 
+            position: absolute; left: 0; top: 0; width: 2.5rem; height: 2.5rem; 
+            background: var(--bg-white); border: 1.5px solid var(--accent); color: var(--accent); 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-weight: 700; font-size: 0.875rem; 
+            font-weight: 600; font-size: 0.8rem; 
         }
-        .roadmap-item h4 { margin-bottom: 0.25rem; color: var(--text-main); font-size: 1.125rem; }
-        .roadmap-item p { margin-bottom: 0; font-size: 0.875rem; }
+        .roadmap-item h4 { margin-bottom: 0.2rem; color: var(--text-main); font-size: 1rem; font-weight: 600; }
+        .roadmap-item p { margin-bottom: 0; font-size: 0.85rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -49,7 +52,7 @@
         </div>
     </header>
 
-    <main class="container" style="padding: 4rem 1.5rem;">
+    <main class="container" style="padding: 2.5rem 1.25rem;">
         <div class="grid grid-2">
             
             <!-- Software Development Roadmap -->

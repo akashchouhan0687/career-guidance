@@ -242,85 +242,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Render Question ──
     const renderQuestion = () => {
         const qContainer = document.getElementById('question-container');
+        if (qContainer) {
+            qContainer.style.opacity = '1';
+            qContainer.style.transform = 'none';
+        }
         
-        // Fade out
-        qContainer.style.opacity = '0';
-        qContainer.style.transform = 'translateY(10px)';
-        
-        setTimeout(() => {
-            const q = questions[currentStep];
-            questionTitle.textContent = q.title;
-            progressText.textContent = `Question ${currentStep + 1} of ${questions.length}`;
-            progressFill.style.width = `${((currentStep + 1) / questions.length) * 100}%`;
+        const q = questions[currentStep];
+        questionTitle.textContent = q.title;
+        progressText.textContent = `Question ${currentStep + 1} of ${questions.length}`;
+        progressFill.style.width = `${((currentStep + 1) / questions.length) * 100}%`;
 
-            optionsContainer.innerHTML = '';
-            q.options.forEach((opt, index) => {
-                const label = document.createElement('label');
-                label.className = 'option-label';
-                
-                const input = document.createElement('input');
-                input.type = q.type === 'multiple' ? 'checkbox' : 'radio';
-                input.name = `question-${currentStep}`;
-                input.value = index;
-                input.className = 'option-input';
+        optionsContainer.innerHTML = '';
+        q.options.forEach((opt, index) => {
+            const label = document.createElement('label');
+            label.className = 'option-label';
+            
+            const input = document.createElement('input');
+            input.type = q.type === 'multiple' ? 'checkbox' : 'radio';
+            input.name = `question-${currentStep}`;
+            input.value = index;
+            input.className = 'option-input';
 
-                // Restore previous selection if any
-                if (userAnswers[currentStep]) {
-                    if (q.type === 'multiple' && userAnswers[currentStep].includes(index)) {
-                        input.checked = true;
-                        label.classList.add('selected');
-                    } else if (q.type === 'single' && userAnswers[currentStep] === index) {
-                        input.checked = true;
-                        label.classList.add('selected');
-                    }
+            // Restore previous selection if any
+            if (userAnswers[currentStep]) {
+                if (q.type === 'multiple' && userAnswers[currentStep].includes(index)) {
+                    input.checked = true;
+                    label.classList.add('selected');
+                } else if (q.type === 'single' && userAnswers[currentStep] === index) {
+                    input.checked = true;
+                    label.classList.add('selected');
                 }
+            }
 
-                input.addEventListener('change', () => {
-                    if (q.type === 'single') {
-                        userAnswers[currentStep] = index;
-                        document.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+            input.addEventListener('change', () => {
+                if (q.type === 'single') {
+                    userAnswers[currentStep] = index;
+                    document.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+                    label.classList.add('selected');
+                } else {
+                    if (!userAnswers[currentStep]) userAnswers[currentStep] = [];
+                    const currentSelection = userAnswers[currentStep];
+                    
+                    if (input.checked) {
+                        if (currentSelection.length >= q.max) {
+                            input.checked = false;
+                            return;
+                        }
+                        currentSelection.push(index);
                         label.classList.add('selected');
                     } else {
-                        if (!userAnswers[currentStep]) userAnswers[currentStep] = [];
-                        const currentSelection = userAnswers[currentStep];
-                        
-                        if (input.checked) {
-                            if (currentSelection.length >= q.max) {
-                                input.checked = false;
-                                return;
-                            }
-                            currentSelection.push(index);
-                            label.classList.add('selected');
-                        } else {
-                            const idx = currentSelection.indexOf(index);
-                            if (idx > -1) currentSelection.splice(idx, 1);
-                            label.classList.remove('selected');
-                        }
+                        const idx = currentSelection.indexOf(index);
+                        if (idx > -1) currentSelection.splice(idx, 1);
+                        label.classList.remove('selected');
                     }
-                    updateNextButton();
-                });
-
-                const text = document.createElement('span');
-                text.textContent = opt.text;
-
-                label.appendChild(input);
-                label.appendChild(text);
-                optionsContainer.appendChild(label);
+                }
+                updateNextButton();
             });
 
-            // Button States
-            prevBtn.classList.toggle('btn-disabled', currentStep === 0);
-            if (currentStep === questions.length - 1) {
-                nextBtn.textContent = 'See Results';
-            } else {
-                nextBtn.textContent = 'Next Question';
-            }
-            updateNextButton();
+            const text = document.createElement('span');
+            text.textContent = opt.text;
 
-            // Fade in
-            qContainer.style.opacity = '1';
-            qContainer.style.transform = 'translateY(0)';
-        }, 250);
+            label.appendChild(input);
+            label.appendChild(text);
+            optionsContainer.appendChild(label);
+        });
+
+        // Button States
+        prevBtn.classList.toggle('btn-disabled', currentStep === 0);
+        if (currentStep === questions.length - 1) {
+            nextBtn.textContent = 'See Results';
+        } else {
+            nextBtn.textContent = 'Next Question';
+        }
+        updateNextButton();
     };
 
     const updateNextButton = () => {
@@ -414,10 +408,10 @@ document.addEventListener('DOMContentLoaded', () => {
         assessmentView.style.display = 'none';
         
         resultsView.style.display = 'block';
-        resultsView.style.opacity = '0';
-        resultsView.style.transition = 'opacity 0.4s ease-out';
+        resultsView.style.opacity = '1';
+        resultsView.style.transition = 'none';
         
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo({top: 0});
 
         // Build profile summary
         const profileContainer = document.getElementById('profile-summary');
@@ -462,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (primaryCareer) {
                 const html = `
-                    <div class="match-card animate-on-scroll" style="transition-delay: ${index * 0.1}s">
+                    <div class="match-card">
                         <div class="match-header">
                             <div>
                                 <span style="color: var(--text-muted); font-size: 0.875rem; font-weight: 500;">0${index + 1} &mdash; ${categoryName}</span>
@@ -471,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="match-score">${percentage}% Match</div>
                         </div>
                         <div class="match-bar-bg">
-                            <div class="match-bar-fill" style="width: 0%;" data-target="${percentage}%"></div>
+                            <div class="match-bar-fill" style="width: ${percentage}%;"></div>
                         </div>
                         <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
                             Your interest in ${categoryName.toLowerCase()} aligns well with this field. 
@@ -488,18 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Trigger animations
-        setTimeout(() => {
-            resultsView.style.opacity = '1';
-            if (window.observeElements) window.observeElements();
-
-            // Animate progress bars
-            setTimeout(() => {
-                document.querySelectorAll('.match-bar-fill').forEach(bar => {
-                    bar.style.width = bar.getAttribute('data-target');
-                });
-            }, 300);
-        }, 50);
+        if (window.observeElements) window.observeElements();
     };
 
     // ── Retake ──
@@ -512,6 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
         stageView.style.display = 'block';
         const profileContainer = document.getElementById('profile-summary');
         if (profileContainer) profileContainer.style.display = 'none';
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo({top: 0});
     });
 });
