@@ -1,4 +1,3 @@
-// js/data.js
 const careersData = [
     {
         id: "software-developer",

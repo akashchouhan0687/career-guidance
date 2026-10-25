@@ -1,4 +1,3 @@
-// js/main.js
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Navigation Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -23,6 +22,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // No-op function to safely satisfy callers without applying scroll reveal animations
     window.observeElements = () => {};
 });

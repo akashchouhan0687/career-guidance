@@ -1,4 +1,3 @@
-/* css/style.css */
 :root {
     --primary: #0f172a;
     --text-main: #1e293b;
@@ -140,24 +139,6 @@ footer { background: var(--bg-white); border-top: 1px solid var(--border); paddi
 .footer-links a:hover { color: var(--accent); }
 .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
 
-/* Scroll Animation Utilities */
-.animate-on-scroll {
-    opacity: 1;
-    transform: none;
-    transition: none;
-}
-.animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
-/* Assessment Specific Animations */
-.progress-bar-fill { transition: none; }
-.match-bar-fill { transition: none; }
-.option-label { transition: none; }
-#question-container { transition: none; }
-#matches-container { transition: none; }
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .nav-links {
@@ -185,8 +166,4 @@ footer { background: var(--bg-white); border-top: 1px solid var(--border); paddi
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-    body { opacity: 1; animation: none; }
-    .animate-on-scroll { opacity: 1; transform: none; transition: none; }
-    .nav-links a::after { display: none; }
-    .card:hover { transform: none; }
 }

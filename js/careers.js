@@ -1,4 +1,3 @@
-// js/careers.js
 document.addEventListener('DOMContentLoaded', () => {
     const explorerView = document.getElementById('explorer-view');
     const detailsView = document.getElementById('details-view');

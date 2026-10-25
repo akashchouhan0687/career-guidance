@@ -1,5 +1,3 @@
-// js/auth.js
-
 document.addEventListener('DOMContentLoaded', () => {
     
     // Toggle Password Visibility

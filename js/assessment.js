@@ -1,5 +1,3 @@
-// js/assessment.js
-
 // Education pathway hints for result cards
 const categoryPathways = {
     "Technology": "Explore computer science, software engineering and web development learning paths.",
@@ -9,10 +7,6 @@ const categoryPathways = {
     "Business": "Explore business administration, marketing and management-related learning paths.",
     "Engineering": "Explore relevant engineering branches and build technical skills through projects."
 };
-
-// ──────────────────────────────────────────
-// Questions — some are shared, some are stage-specific
-// ──────────────────────────────────────────
 
 const sharedQuestions = [
     {
@@ -189,9 +183,8 @@ const stageQuestions = {
     ]
 };
 
-// ──────────────────────────────────────────
+
 // Assessment logic
-// ──────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
     let educationStage = null;   // 'school', 'higher_secondary', 'college'
@@ -219,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         college: "College"
     };
 
-    // ── Stage Selection ──
+    //Stage Selection
     const stageCards = document.querySelectorAll('.stage-card');
     stageCards.forEach(card => {
         card.addEventListener('click', () => {
@@ -239,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentStep = 0;
     };
 
-    // ── Render Question ──
+    //Render Question 
     const renderQuestion = () => {
         const qContainer = document.getElementById('question-container');
         if (qContainer) {
@@ -351,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ── Calculate Results (preserves existing scoring logic) ──
+    //Calculate Results (preserves existing scoring logic) 
     const calculateResults = () => {
         const categoryScores = {
             "Technology": 0, "Cybersecurity": 0, "AI & Data": 0, 
@@ -387,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showResults(sortedCategories, maxPossible);
     };
 
-    // ── Collect user interest tags for the profile summary ──
+    //Collect user interest tags for the profile summary
     const collectInterestTags = () => {
         const tags = [];
         userAnswers.forEach((ans, qIndex) => {
@@ -403,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return [...new Set(tags)].slice(0, 4);
     };
 
-    // ── Show Results ──
+    //Show Results
     const showResults = (topCategories, maxScore) => {
         assessmentView.style.display = 'none';
         
@@ -485,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.observeElements) window.observeElements();
     };
 
-    // ── Retake ──
+    //Retak
     retakeBtn.addEventListener('click', () => {
         currentStep = 0;
         userAnswers.fill(null);
