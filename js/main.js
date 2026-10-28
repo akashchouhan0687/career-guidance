@@ -22,5 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Intercept Assessment entry points for unauthenticated visitors
+    const assessmentLinks = document.querySelectorAll('a[href="assessment.html"], a[href="./assessment.html"]');
+    assessmentLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const isLoggedIn = localStorage.getItem('careerGuideLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                e.preventDefault();
+                window.location.href = 'login.html?redirect=assessment.html';
+            }
+        });
+    });
+
     window.observeElements = () => {};
 });

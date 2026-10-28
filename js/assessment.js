@@ -187,6 +187,12 @@ const stageQuestions = {
 // Assessment logic
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Assessment Authentication Guard
+    if (localStorage.getItem('careerGuideLoggedIn') !== 'true') {
+        window.location.replace('login.html?redirect=assessment.html');
+        return;
+    }
+
     let educationStage = null;   // 'school', 'higher_secondary', 'college'
     let questions = [];          // Built after stage is selected
     let currentStep = 0;
