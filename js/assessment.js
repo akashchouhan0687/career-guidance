@@ -210,6 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const matchesContainer = document.getElementById('matches-container');
     const retakeBtn = document.getElementById('retake-btn');
     const stageView = document.getElementById('stage-view');
+    const completionModal = document.getElementById('completion-modal');
+    const viewResultsBtn = document.getElementById('view-results-btn');
+
+    let cachedResults = null;
+    let hasSubmitted = false;
 
     // Education stage labels for display
     const stageLabels = {
@@ -332,6 +337,67 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Modal Keyboard & Focus Handlers
+    const handleModalKeyDown = (e) => {
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            proceedToResults();
+        } else if (e.key === 'Tab') {
+            // Keep focus trapped on primary action button
+            if (viewResultsBtn) {
+                e.preventDefault();
+                viewResultsBtn.focus();
+            }
+        }
+    };
+
+    const showGreetingPopup = () => {
+        if (!completionModal) {
+            // Fallback if modal container not found
+            if (cachedResults) {
+                showResults(cachedResults.sortedCategories, cachedResults.maxPossible);
+            }
+            return;
+        }
+
+        completionModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        if (viewResultsBtn) {
+            viewResultsBtn.focus();
+        }
+
+        document.addEventListener('keydown', handleModalKeyDown);
+    };
+
+    const hideGreetingPopup = () => {
+        if (completionModal) {
+            completionModal.style.display = 'none';
+        }
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleModalKeyDown);
+    };
+
+    const proceedToResults = () => {
+        hideGreetingPopup();
+        if (cachedResults) {
+            showResults(cachedResults.sortedCategories, cachedResults.maxPossible);
+        }
+    };
+
+    if (viewResultsBtn) {
+        viewResultsBtn.addEventListener('click', proceedToResults);
+    }
+
+    if (completionModal) {
+        completionModal.addEventListener('click', (e) => {
+            // Clicking backdrop overlay also proceeds safely to results
+            if (e.target === completionModal) {
+                proceedToResults();
+            }
+        });
+    }
+
     prevBtn.addEventListener('click', () => {
         if (currentStep > 0) {
             currentStep--;
@@ -346,12 +412,34 @@ document.addEventListener('DOMContentLoaded', () => {
             currentStep++;
             renderQuestion();
         } else {
-            calculateResults();
+            // Final submission
+            if (hasSubmitted) return;
+
+            // Validate that the final question has an answer
+            const q = questions[currentStep];
+            const hasAnswer = q.type === 'single'
+                ? userAnswers[currentStep] !== null
+                : (userAnswers[currentStep] && userAnswers[currentStep].length > 0);
+            if (!hasAnswer) return;
+
+            // Verify all questions have been answered
+            const allAnswered = userAnswers.every((ans, idx) => {
+                const item = questions[idx];
+                if (item.type === 'single') return ans !== null;
+                return Array.isArray(ans) && ans.length > 0;
+            });
+            if (!allAnswered) return;
+
+            hasSubmitted = true;
+            // 1. Calculate and preserve results
+            cachedResults = computeResults();
+            // 2. Display centered greeting popup before showing results
+            showGreetingPopup();
         }
     });
 
-    //Calculate Results (preserves existing scoring logic) 
-    const calculateResults = () => {
+    // Compute Results (preserves existing scoring and ranking logic)
+    const computeResults = () => {
         const categoryScores = {
             "Technology": 0, "Cybersecurity": 0, "AI & Data": 0, 
             "Design": 0, "Business": 0, "Engineering": 0
@@ -382,8 +470,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .slice(0, 3); // Top 3
 
         const maxPossible = 15;
-        
-        showResults(sortedCategories, maxPossible);
+        return { sortedCategories, maxPossible };
+    };
+
+    // Calculate Results alias (for backwards compatibility)
+    const calculateResults = () => {
+        cachedResults = computeResults();
+        showGreetingPopup();
     };
 
     //Collect user interest tags for the profile summary
@@ -484,8 +577,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.observeElements) window.observeElements();
     };
 
-    //Retak
+    // Retake Assessment
     retakeBtn.addEventListener('click', () => {
+        hasSubmitted = false;
+        cachedResults = null;
+        hideGreetingPopup();
         currentStep = 0;
         userAnswers.fill(null);
         educationStage = null;
